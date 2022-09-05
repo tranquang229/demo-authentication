@@ -27,7 +27,7 @@ function App() {
       {!loginStatus && (
         <GoogleLogin
           clientId="149006969627-t1n833e914bhjfmd9vt3tiq3fa9vhghr.apps.googleusercontent.com"
-          buttonText="Login"
+          buttonText="Login new"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
           responseType="code"

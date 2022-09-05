@@ -23,14 +23,13 @@ function App() {
   };
   return (
     <div className="App">
-      <h1>Login with Google2</h1>
+      <h1>Login with Google 3</h1>
       {!loginStatus && (
         <GoogleLogin
           clientId="149006969627-t1n833e914bhjfmd9vt3tiq3fa9vhghr.apps.googleusercontent.com"
-          buttonText="Login new"
+          buttonText="Login new 3"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
-          responseType="code"
           cookiePolicy={"single_host_origin"}
         />
       )}

@@ -9,8 +9,11 @@ function App() {
   const [email, setEmail] = useState("");
   const [url, setUrl] = useState("");
   const [loginStatus, setLoginStatus] = useState(false);
+  const clientId =
+    "400455690148-c2di9culb9l4i9b8i1nb8iponphdep4v.apps.googleusercontent.com";
 
   const responseGoogle = (response) => {
+    console.log("🚀 ~ file: App.js ~ line 13 ~ App ~ clientId", clientId);
     console.log(response);
     setName(response.profileObj.name);
     setEmail(response.profileObj.email);
@@ -21,15 +24,14 @@ function App() {
     console.log("logout");
     setLoginStatus(false);
   };
-  const clientId =
-    "400455690148-c2di9culb9l4i9b8i1nb8iponphdep4v.apps.googleusercontent.com";
+
   return (
     <div className="App">
       <h1>Login with Google 3</h1>
       {!loginStatus && (
         <GoogleLogin
           clientId={clientId}
-          buttonText="Login new 3"
+          buttonText="Login new 4"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
           cookiePolicy={"single_host_origin"}

@@ -21,12 +21,14 @@ function App() {
     console.log("logout");
     setLoginStatus(false);
   };
+  const clientId =
+    "400455690148-c2di9culb9l4i9b8i1nb8iponphdep4v.apps.googleusercontent.com";
   return (
     <div className="App">
       <h1>Login with Google 3</h1>
       {!loginStatus && (
         <GoogleLogin
-          clientId="149006969627-t1n833e914bhjfmd9vt3tiq3fa9vhghr.apps.googleusercontent.com"
+          clientId={clientId}
           buttonText="Login new 3"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
@@ -40,7 +42,7 @@ function App() {
           <img src={url} alt={name} />
           <br />
           <GoogleLogout
-            clientId="149006969627-t1n833e914bhjfmd9vt3tiq3fa9vhghr.apps.googleusercontent.com"
+            clientId={clientId}
             buttonText="Logout"
             onLogoutSuccess={logout}
           />

@@ -2,7 +2,8 @@ import './App.css';
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import FacebookLogin from 'react-facebook-login';
-
+import FormUpload from './FormUpload';
+import FileSaver from 'file-saver';
 function App() {
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => {
@@ -10,7 +11,8 @@ function App() {
         method: 'post',
         url: `https://localhost:5002/api/Auth/google/login`,
         data: {
-          Code: codeResponse.code,
+          code: codeResponse.code,
+          type: 1,
         },
       }).then((res) => {
         console.log(res.data);
@@ -20,6 +22,7 @@ function App() {
   });
 
   const responseFacebook = (response) => {
+    debugger;
     console.log(response);
 
     axios({
@@ -27,27 +30,44 @@ function App() {
       url: `https://localhost:5002/api/Auth/facebook/login`,
       data: {
         AccessToken: response.accessToken,
-        Id: response.id,
+        FacebookId: response.id,
+        Type: 1,
       },
     }).then((res) => {
       console.log(res.data);
     });
   };
-
+const handleSaveFile = ()=> {
+  axios({
+    method: 'get',
+    url: `https://localhost:6002/api/admin/Sample/write`,
+  }).then((res) => {
+    FileSaver.saveAs(
+      new Blob(res.data, {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      }),
+      'testing.xlsx'
+    );
+  });
+}
   return (
     <div className='App'>
       <header className='App-header'>
         <button onClick={() => login()}>Login with google2</button>
 
         <FacebookLogin
-          appId='1444264146087502' //tranquang229
-          // appId='557517852817093' //quangtv
+          // appId="1444264146087502" //tranquang229
+          appId='557517852817093' //quangtv
           autoLoad={false}
-          fields='name,email,picture'
-          scope='public_profile'
+          // fields="name,email,picture"
+          scope='public_profile,email'
           callback={responseFacebook}
-          redirectUri='http://localhost:3000'
+          redirectUri='https://demo-authentication.herokuapp.com/'
+          // redirectUri='http://localhost:3000/'
         />
+        <FormUpload/>
+
+        <button onClick={handleSaveFile}>SaveFile</button>
       </header>
     </div>
   );

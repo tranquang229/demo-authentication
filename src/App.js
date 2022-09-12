@@ -7,12 +7,12 @@ import FileSaver from 'file-saver';
 function App() {
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => {
+      debugger
       axios({
         method: 'post',
         url: `https://localhost:5002/api/Auth/google/login`,
         data: {
           code: codeResponse.code,
-          type: 1,
         },
       }).then((res) => {
         console.log(res.data);
@@ -31,7 +31,6 @@ function App() {
       data: {
         AccessToken: response.accessToken,
         FacebookId: response.id,
-        Type: 1,
       },
     }).then((res) => {
       console.log(res.data);
@@ -53,7 +52,7 @@ const handleSaveFile = ()=> {
   return (
     <div className='App'>
       <header className='App-header'>
-        <button onClick={() => login()}>Login with google</button>
+        <button onClick={() => login()}>Login with google3</button>
 
         <FacebookLogin
           // appId="1444264146087502" //tranquang229

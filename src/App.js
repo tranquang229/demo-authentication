@@ -53,7 +53,7 @@ const handleSaveFile = ()=> {
   return (
     <div className='App'>
       <header className='App-header'>
-        <button onClick={() => login()}>Login with google2</button>
+        <button onClick={() => login()}>Login with google</button>
 
         <FacebookLogin
           // appId="1444264146087502" //tranquang229
@@ -62,8 +62,9 @@ const handleSaveFile = ()=> {
           // fields="name,email,picture"
           scope='public_profile,email'
           callback={responseFacebook}
-          redirectUri='https://demo-authentication.herokuapp.com/'
+          // redirectUri='https://demo-authentication.herokuapp.com/'
           // redirectUri='http://localhost:3000/'
+          // redirectUri='https://6225-1-53-140-185.ap.ngrok.io'
         />
         <FormUpload/>
 
